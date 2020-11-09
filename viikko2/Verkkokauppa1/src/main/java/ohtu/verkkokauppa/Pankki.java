@@ -2,19 +2,10 @@ package ohtu.verkkokauppa;
 
 public class Pankki implements PankkiInterface {
 
-    private static Pankki instanssi;
+    private KirjanpitoInterface kirjanpito;
 
-    public static Pankki getInstance() {
-        if (instanssi == null) {
-            instanssi = new Pankki();
-        }
-
-        return instanssi;
-    }
-    private Kirjanpito kirjanpito;
-
-    public Pankki() {
-        kirjanpito = Kirjanpito.getInstance();
+    public Pankki(KirjanpitoInterface kp) {
+        kirjanpito = kp;
     }
 
     @Override
@@ -22,7 +13,7 @@ public class Pankki implements PankkiInterface {
         kirjanpito.lisaaTapahtuma("tilisiirto: tililt√§ " + tilille + " tilille " + tilille
                 + " viite " + viitenumero + " summa " + summa + "e");
 
-        // t√§√§ll√§ olisi koodi joka ottaa yhteyden pankin verkkorajapintaan
+        // t‰‰ll‰ olisi koodi joka ottaa yhteyden pankin verkkorajapintaan
         return true;
     }
 }
