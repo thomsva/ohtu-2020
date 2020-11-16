@@ -30,7 +30,23 @@ public class Stepdefs {
         WebElement element = driver.findElement(By.linkText("register new user"));       
         element.click();   
     }    
+
+    @Given("user with username {string} with password {string} is successfully created")
+    public void newUserSuccessfullyCreated(String username, String password) {
+        newUserIsSelected();
+        newUserWith(username, password, password);
+        newUserIsCreated();
+    }
     
+    @Given("user with username {string} and password {string} is tried to be created")
+    public void newUserIsTriedToBeCreated(String username, String password) {
+        newUserIsSelected();
+        newUserWith(username, password, password);
+        //Error message depends on given parameters, but all error messages contain
+        //the word "should"
+        userIsNotCreatedAndErrorMessageIsGiven(" should ");
+    }
+
     @When("a valid username {string} and password {string} and matching password confirmation are entered")
     public void newUserValidUsernameAndPasswordAreGiven(String username, String password) {
         newUserWith(username, password, password);
@@ -50,7 +66,6 @@ public class Stepdefs {
     public void newUserCorrectUsernameAndTooShortPasswordAreGiven(String username, String password, String passwordConfirmation) {
         newUserWith(username, password, passwordConfirmation);
     }
-
 
     @When("correct username {string} and password {string} are given")
     public void correctUsernameAndPasswordAreGiven(String username, String password) {
@@ -81,7 +96,6 @@ public class Stepdefs {
     public void userIsNotCreatedAndErrorMessageIsGiven(String errormessage) {
         pageHasContent(errormessage);
         pageHasContent("Create username and give password");
-
     }
 
     @Then("user is not logged in and error message is given")
