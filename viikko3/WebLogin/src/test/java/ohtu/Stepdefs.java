@@ -13,6 +13,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 public class Stepdefs {
     //WebDriver driver = new ChromeDriver();
+    //System.setProperty("webdriver.chrome.driver", "c:/Chromedriver/chromedriver.exe");
     WebDriver driver = new HtmlUnitDriver();
     String baseUrl = "http://localhost:4567";
     
@@ -35,6 +36,11 @@ public class Stepdefs {
  
     @When("correct username {string} and incorrect password {string} are given")
     public void correctUsernameAndIncorrectPasswordAreGiven(String username, String password) {
+        logInWith(username, password);
+    }    
+
+    @When("nonexistent username {string} and password {string} are given")
+    public void nonexistentUsernameAndcorrectPasswordAreGiven(String username, String password) {
         logInWith(username, password);
     }    
     
