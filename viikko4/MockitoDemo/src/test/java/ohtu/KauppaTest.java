@@ -67,7 +67,7 @@ public class KauppaTest {
         
         // määrittelemme minkä arvon viitegeneraattori palauttaa kun sen metodia
         // seuraava() kutsutaan
-        when(mockViite.seruaava()).thenReturn(55);
+        when(mockViite.seruaava()).thenReturn(54);
 
         kauppa = new Kauppa(mockPankki, mockViite);
 
