@@ -1,0 +1,1 @@
+[Viikko 6 tehtävä 6, pull request](https://github.com/LindaJT/ryhma_kuusi/pull/2)
