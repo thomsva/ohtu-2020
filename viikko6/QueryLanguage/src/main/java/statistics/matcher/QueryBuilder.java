@@ -2,6 +2,7 @@ package statistics.matcher;
 
 import java.util.LinkedList;
 import statistics.Player;
+import java.util.Arrays; 
 
 public class QueryBuilder implements Matcher {
 
@@ -10,6 +11,10 @@ public class QueryBuilder implements Matcher {
 
     public QueryBuilder() {
         elements = new LinkedList<>();
+    }
+
+    public QueryBuilder(Matcher... m){
+      this.matchers=m;
     }
 
     public Matcher QueryBuilder(Matcher matcher) {
@@ -33,14 +38,10 @@ public class QueryBuilder implements Matcher {
         return this;
     }
     
-    public QueryBuilder oneOf(Matcher m1, Matcher m2) {
-        Matcher[] m = new Matcher[2];
-        m[0]=m1;
-        m[1]=m2;
+    public QueryBuilder oneOf(Matcher... m) {
         this.elements.add(new Or(m));
         return this;
     }
-       
 
     public Matcher build() {
 
@@ -56,17 +57,17 @@ public class QueryBuilder implements Matcher {
             matchers[i] = elements.pop();
             i++;
         }
-        return this;
+        return new QueryBuilder(matchers);
     }
 
     @Override
     public boolean matches(Player p) {
+
         for (Matcher matcher : matchers) {
             if (!matcher.matches(p)) {
                 return false;
             }
         }
-
         return true;
     }
 

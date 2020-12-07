@@ -8,8 +8,9 @@ public class Main {
         Statistics stats = new Statistics(new PlayerReaderImpl("https://nhlstatisticsforohtu.herokuapp.com/players.txt"));
 
         QueryBuilder query = new QueryBuilder();
+        QueryBuilder query2 = new QueryBuilder();
 
-        Matcher m1 = query.playsIn("PHI")
+        Matcher m1= query.playsIn("PHI")
           .hasAtLeast(10, "assists")
           .hasFewerThan(5, "goals").build();
 
