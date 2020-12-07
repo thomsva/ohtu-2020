@@ -33,10 +33,14 @@ public class QueryBuilder implements Matcher {
         return this;
     }
     
-    
-    
-    
-    
+    public QueryBuilder oneOf(Matcher m1, Matcher m2) {
+        Matcher[] m = new Matcher[2];
+        m[0]=m1;
+        m[1]=m2;
+        this.elements.add(new Or(m));
+        return this;
+    }
+       
 
     public Matcher build() {
 
